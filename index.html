@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIKE AIR 3D | Interactive Story</title>
+    <title>NIKE AIR JORDAN 3D | Interactive Experience</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
@@ -21,7 +21,7 @@
             background: #000;
             color: #fff;
             overflow-x: hidden;
-            transition: background 0.5s;
+            transition: all 0.5s;
         }
 
         /* Header */
@@ -82,9 +82,21 @@
             left: 0;
         }
 
+        canvas {
+            display: block;
+        }
+
         /* Scene 1: Shoe Falling */
         #scene-1 {
             background: linear-gradient(to bottom, #000000, #1a1a2e);
+        }
+
+        .scene-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            text-align: center;
+            z-index: 10;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
         }
 
         /* Scene 2: Lace Tightening */
@@ -92,10 +104,21 @@
             background: #000;
         }
 
-        .lace-tightening {
+        .lace-animation {
+            width: 100%;
+            height: 100%;
             position: relative;
-            width: 500px;
-            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lace-visual {
+            width: 300px;
+            height: 5px;
+            background: #fff;
+            position: absolute;
+            transform-origin: left center;
         }
 
         /* Scene 3: Studio Lighting */
@@ -115,24 +138,26 @@
             background: #000;
         }
 
-        .color-options {
+        .color-palette {
             position: absolute;
-            bottom: 50px;
+            bottom: 100px;
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            z-index: 100;
         }
 
-        .color-btn {
-            width: 40px;
-            height: 40px;
+        .color-option {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            border: 2px solid #fff;
+            border: 3px solid #fff;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
 
-        .color-btn:hover {
+        .color-option:hover {
             transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
         }
 
         /* Scene 5: Packaging */
@@ -140,58 +165,71 @@
             background: #000;
         }
 
-        .nike-box {
-            width: 400px;
+        .shoe-box {
+            width: 500px;
             height: 300px;
             background: #111;
-            border: 2px solid #ff0000;
+            border: 5px solid #ff0000;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
+            transform: translateY(100px);
         }
 
-        .nike-logo {
-            width: 150px;
-            height: 50px;
-            background: url('https://i.imgur.com/JQJ8Q9W.png') center/contain no-repeat;
+        .box-lid {
+            position: absolute;
+            top: -10px;
+            width: 100%;
+            height: 20px;
+            background: #ff0000;
         }
 
         /* Footer */
         footer {
-            padding: 50px 10%;
+            padding: 100px 10%;
             text-align: center;
             background: #111;
         }
 
-        .buy-now-btn {
+        .buy-btn {
             background: #ff0000;
             color: #fff;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
+            padding: 20px 50px;
+            font-size: 1.5rem;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            transition: 0.3s;
-            margin-top: 30px;
+            transition: all 0.3s;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
         }
 
-        .buy-now-btn:hover {
+        .buy-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 1.8rem;
+            .scene-title {
+                font-size: 3rem;
             }
             
-            nav a {
-                margin-left: 15px;
-                font-size: 0.9rem;
+            .shoe-box {
+                width: 300px;
+                height: 200px;
+            }
+            
+            .color-palette {
+                bottom: 50px;
+            }
+            
+            .color-option {
+                width: 40px;
+                height: 40px;
             }
         }
     </style>
@@ -199,11 +237,11 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">NIKE <span>AIR</span></div>
+        <div class="logo">AIR <span>JORDAN</span></div>
         <nav>
             <a href="#scene-1">Story</a>
             <a href="#scene-4">Colors</a>
-            <a href="#scene-5">Box</a>
+            <a href="#scene-5">Unbox</a>
         </nav>
     </header>
 
@@ -212,87 +250,100 @@
 
     <!-- Story Sections -->
     <section class="scene" id="scene-1">
-        <h1>THE LEGENDARY NIKE AIR</h1>
+        <h1 class="scene-title">AIR JORDAN 3D EXPERIENCE</h1>
     </section>
 
     <section class="scene" id="scene-2">
-        <div class="lace-tightening">
-            <h2>PERFECT FIT TECHNOLOGY</h2>
+        <div class="lace-animation">
+            <h2 class="scene-title">DYNAMIC FIT SYSTEM</h2>
+            <div class="lace-visual" id="lace-1"></div>
+            <div class="lace-visual" id="lace-2"></div>
+            <div class="lace-visual" id="lace-3"></div>
         </div>
     </section>
 
     <section class="scene" id="scene-3">
         <div class="studio-light"></div>
-        <h2>STUDIO QUALITY CRAFT</h2>
+        <h2 class="scene-title">STUDIO LIGHTING EFFECTS</h2>
     </section>
 
     <section class="scene" id="scene-4">
-        <div class="color-options">
-            <div class="color-btn" style="background: #ff0000;" data-color="#ff0000"></div>
-            <div class="color-btn" style="background: #0000ff;" data-color="#0000ff"></div>
-            <div class="color-btn" style="background: #00ff00;" data-color="#00ff00"></div>
-            <div class="color-btn" style="background: #ffff00;" data-color="#ffff00"></div>
-            <div class="color-btn" style="background: #ff00ff;" data-color="#ff00ff"></div>
+        <div class="color-palette">
+            <div class="color-option" style="background: #ff0000;" data-color="#ff0000"></div>
+            <div class="color-option" style="background: #0000ff;" data-color="#0000ff"></div>
+            <div class="color-option" style="background: #00ff00;" data-color="#00ff00"></div>
+            <div class="color-option" style="background: #ffff00;" data-color="#ffff00"></div>
+            <div class="color-option" style="background: #ff00ff;" data-color="#ff00ff"></div>
         </div>
     </section>
 
     <section class="scene" id="scene-5">
-        <div class="nike-box">
-            <div class="nike-logo"></div>
+        <div class="shoe-box">
+            <div class="box-lid"></div>
+            <h2 class="scene-title">YOUR EXCLUSIVE BOX</h2>
         </div>
     </section>
 
     <footer>
-        <button class="buy-now-btn">BUY NOW - $499</button>
+        <button class="buy-btn">BUY NOW - $599</button>
     </footer>
 
     <script>
-        // Three.js 3D Shoe
-        let scene, camera, renderer, shoe;
+        // Three.js 3D Shoe Setup
+        let scene, camera, renderer, shoeModel;
         const container = document.getElementById('shoe-container');
+        
+        // Colors
+        let currentColor = '#ffffff';
+        const colors = {
+            red: '#ff0000',
+            blue: '#0000ff',
+            green: '#00ff00',
+            yellow: '#ffff00',
+            pink: '#ff00ff'
+        };
 
         // Init Three.js
-        function init() {
+        function init3D() {
+            // Scene
             scene = new THREE.Scene();
+            scene.background = null;
+            
+            // Camera
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.z = 5;
-
-            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             container.appendChild(renderer.domElement);
-
-            // Load 3D Shoe Model
-            const loader = new THREE.GLTFLoader();
-            loader.load(
-                'https://cdn.jsdelivr.net/gh/mrdoob/three.js@dev/examples/models/gltf/Shoe/glTF/Shoe.gltf',
-                function (gltf) {
-                    shoe = gltf.scene;
-                    shoe.scale.set(2, 2, 2);
-                    scene.add(shoe);
-                },
-                undefined,
-                function (error) {
-                    console.error('Error loading 3D model:', error);
-                }
-            );
-
+            
             // Lighting
-            const light = new THREE.AmbientLight(0xffffff, 0.5);
-            scene.add(light);
-
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
             const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-            directionalLight.position.set(0, 1, 1);
+            directionalLight.position.set(1, 1, 1);
             scene.add(directionalLight);
-
+            
+            // Load 3D Model (Using a simple cube as placeholder - replace with actual GLTF model)
+            const geometry = new THREE.BoxGeometry(2, 2, 2);
+            const material = new THREE.MeshPhongMaterial({ 
+                color: 0xffffff,
+                shininess: 100
+            });
+            shoeModel = new THREE.Mesh(geometry, material);
+            scene.add(shoeModel);
+            
             // Animation Loop
             function animate() {
                 requestAnimationFrame(animate);
-                if (shoe) shoe.rotation.y += 0.01;
+                shoeModel.rotation.y += 0.01;
                 renderer.render(scene, camera);
             }
             animate();
-
-            // Handle Window Resize
+            
+            // Handle Resize
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
@@ -300,13 +351,14 @@
             });
         }
 
-        init();
+        // Initialize
+        init3D();
 
         // GSAP Scroll Animations
         gsap.registerPlugin(ScrollTrigger);
 
         // Scene 1: Shoe Falling
-        gsap.from(shoe.position, {
+        gsap.from(shoeModel.position, {
             scrollTrigger: {
                 trigger: "#scene-1",
                 start: "top top",
@@ -314,22 +366,27 @@
                 scrub: true
             },
             y: 10,
-            z: 10
+            z: 10,
+            duration: 2
         });
 
-        // Scene 2: Lace Tightening (Simulated)
-        gsap.to(".lace-tightening", {
-            scrollTrigger: {
-                trigger: "#scene-2",
-                start: "top center",
-                end: "bottom center",
-                scrub: true
-            },
-            scale: 1.2,
-            opacity: 1
+        // Scene 2: Lace Tightening Animation
+        const laces = document.querySelectorAll('.lace-visual');
+        laces.forEach((lace, index) => {
+            gsap.to(lace, {
+                scrollTrigger: {
+                    trigger: "#scene-2",
+                    start: "top center",
+                    end: "bottom center",
+                    scrub: true
+                },
+                width: 400,
+                rotate: index % 2 === 0 ? 10 : -10,
+                duration: 2
+            });
         });
 
-        // Scene 3: Studio Light Effect
+        // Scene 3: Studio Lighting Effect
         gsap.to(".studio-light", {
             scrollTrigger: {
                 trigger: "#scene-3",
@@ -337,21 +394,29 @@
                 end: "bottom center",
                 scrub: true
             },
-            opacity: 0.8
+            opacity: 0.8,
+            duration: 1
         });
 
         // Scene 4: Color Change
-        const colorBtns = document.querySelectorAll('.color-btn');
-        colorBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const color = btn.getAttribute('data-color');
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const color = option.getAttribute('data-color');
+                currentColor = color;
+                shoeModel.material.color.setStyle(color);
+                
+                // Change site theme
                 document.body.style.background = color;
-                gsap.to("header", { background: `rgba(${hexToRgb(color)}, 0.7)` });
+                gsap.to("header", {
+                    backgroundColor: `rgba(${hexToRgb(color)}, 0.7)`,
+                    duration: 0.5
+                });
             });
         });
 
-        // Scene 5: Packaging
-        gsap.to(".nike-box", {
+        // Scene 5: Shoe Boxing
+        gsap.to(".shoe-box", {
             scrollTrigger: {
                 trigger: "#scene-5",
                 start: "top center",
@@ -359,16 +424,23 @@
                 scrub: true
             },
             opacity: 1,
-            y: -50
+            y: 0,
+            duration: 1
         });
 
-        // Helper: Hex to RGB
+        // Helper: Convert Hex to RGB
         function hexToRgb(hex) {
             hex = hex.replace('#', '');
             const r = parseInt(hex.substring(0, 2), 16);
             const g = parseInt(hex.substring(2, 4), 16);
             const b = parseInt(hex.substring(4, 6), 16);
             return `${r}, ${g}, ${b}`;
+        }
+
+        // Sound Effects (Optional)
+        function playSound(effect) {
+            // Would use Howler.js in production
+            console.log(`Playing sound: ${effect}`);
         }
     </script>
 </body>
